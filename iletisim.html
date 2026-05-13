@@ -6,7 +6,6 @@
     <title>İletişim - Web Projem</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     
     <style>
@@ -18,8 +17,7 @@
 </head>
 <body>
 
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
@@ -35,125 +33,179 @@
     </div>
 </nav>
 
-    <div id="app" class="container my-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 contact-container p-5">
-                <h2 class="text-center mb-4">İletişim Formu</h2>
+<div id="app" class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 contact-container p-5">
+            <h2 class="text-center mb-4">İletişim Formu</h2>
+            
+            <form id="contactForm" action="gonder.php" method="POST" @submit="validateVue">
                 
-                <form id="contactForm" action="gonder.php" method="POST" @submit="validateVue">
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Adınız Soyadınız</label>
-                        <input type="text" name="adSoyad" id="adSoyad" v-model="form.name" class="form-control" :class="{'is-invalid': errors.name}">
-                        <div class="error-msg" v-if="errors.name">{{ errors.name }}</div>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Adınız Soyadınız</label>
+                    <input type="text" name="adSoyad" id="adSoyad" v-model="form.name" class="form-control" :class="{'is-invalid': errors.name}">
+                    <div class="error-msg" v-if="errors.name">{{ errors.name }}</div>
+                </div>
 
-                    
-                    <div class="mb-3">
-                        <label class="form-label">E-posta Adresiniz</label>
-                        <input type="email" name="email" id="email" v-model="form.email" class="form-control" :class="{'is-invalid': errors.email}">
-                        <div class="error-msg" v-if="errors.email">{{ errors.email }}</div>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">E-posta Adresiniz</label>
+                    <input type="text" name="email" id="email" v-model="form.email" class="form-control" :class="{'is-invalid': errors.email}">
+                    <div class="error-msg" v-if="errors.email">{{ errors.email }}</div>
+                </div>
 
-                   
-<div class="mb-3">
-    <label class="form-label">Konu</label>
-    <select name="konu" class="form-select" v-model="form.subject">
-        <option value="">Seçiniz...</option>
-        <option value="Destek">Destek</option>
-        <option value="Öneri">Öneri</option>
-        <option value="İş Birliği">İş Birliği</option>
-        <option value="Diğer">Diğer</option> 
-    </select>
-</div>
+                <div class="mb-3">
+                    <label class="form-label">Telefon Numaranız</label>
+                    <input type="text" name="telefon" id="telefon" v-model="form.phone" class="form-control" :class="{'is-invalid': errors.phone}" placeholder="Örn: 05551112233">
+                    <div class="error-msg" v-if="errors.phone">{{ errors.phone }}</div>
+                </div>
 
-                    
-                    <div class="mb-3">
-                        <label class="form-label">Mesajınız</label>
-                        <textarea name="mesaj" v-model="form.message" class="form-control" rows="4"></textarea>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Konu</label>
+                    <select name="konu" id="konu" class="form-select" v-model="form.subject" :class="{'is-invalid': errors.subject}">
+                        <option value="">Seçiniz...</option>
+                        <option value="Destek">Destek</option>
+                        <option value="Öneri">Öneri</option>
+                        <option value="İş Birliği">İş Birliği</option>
+                        <option value="Diğer">Diğer</option> 
+                    </select>
+                    <div class="error-msg" v-if="errors.subject">{{ errors.subject }}</div>
+                </div>
 
-                    
-                    <div class="mb-3">
-                        <label class="form-label d-block">Cinsiyet</label>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="cinsiyet" value="Erkek" v-model="form.gender">
-                            <label class="form-check-label">Erkek</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="cinsiyet" value="Kadın" v-model="form.gender">
-                            <label class="form-check-label">Kadın</label>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label">Mesajınız</label>
+                    <textarea name="mesaj" id="mesaj" v-model="form.message" class="form-control" rows="4" :class="{'is-invalid': errors.message}"></textarea>
+                    <div class="error-msg" v-if="errors.message">{{ errors.message }}</div>
+                </div>
 
-                    <div class="d-grid gap-2 mt-4">
-                        <button type="button" class="btn btn-primary" onclick="validateJS()">JS ile Gönder</button>
-                        <button type="submit" class="btn btn-success">Vue.js ile Gönder</button>
-                        <button type="reset" class="btn btn-outline-secondary" @click="resetForm">Temizle</button>
+                <div class="mb-3">
+                    <label class="form-label d-block">Cinsiyet</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="cinsiyet" id="genderM" value="Erkek" v-model="form.gender">
+                        <label class="form-check-label" for="genderM">Erkek</label>
                     </div>
-                </form>
-            </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="cinsiyet" id="genderF" value="Kadın" v-model="form.gender">
+                        <label class="form-check-label" for="genderF">Kadın</label>
+                    </div>
+                    <div class="error-msg" v-if="errors.gender">{{ errors.gender }}</div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" name="onay" id="onay" class="form-check-input" v-model="form.agree">
+                    <label class="form-check-label" for="onay">Bilgilerimin doğruluğunu kabul ediyorum.</label>
+                    <div class="error-msg" v-if="errors.agree">{{ errors.agree }}</div>
+                </div>
+
+                <div class="d-grid gap-2 mt-4">
+                    <button type="button" class="btn btn-primary" onclick="validateJS()">JS ile Gönder</button>
+                    <button type="submit" class="btn btn-success">Vue.js ile Gönder</button>
+                    <button type="reset" class="btn btn-outline-secondary" @click="resetForm">Temizle</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
+<script>
     
-    <script>
-       
-        function validateJS() {
-            const name = document.getElementById('adSoyad').value;
-            const email = document.getElementById('email').value;
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function validateJS() {
+        const name = document.getElementById('adSoyad').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('telefon').value.trim();
+        const subject = document.getElementById('konu').value;
+        const message = document.getElementById('mesaj').value.trim();
+        const genderMale = document.getElementById('genderM').checked;
+        const genderFemale = document.getElementById('genderF').checked;
+        const agree = document.getElementById('onay').checked;
 
-            if (name === "" || email === "") {
-                alert("Lütfen tüm alanları doldurun! (JS Kontrolü)");
-                return false;
-            }
-            if (!emailPattern.test(email)) {
-                alert("Geçersiz e-posta formatı! (JS Kontrolü)");
-                return false;
-            }
-            
-            alert("JS Kontrolü Başarılı! Form PHP'ye gönderiliyor...");
-            document.getElementById('contactForm').submit();
-        }
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phonePattern = /^[0-9]+$/; 
 
         
-        const { createApp } = Vue;
-        createApp({
-            data() {
-                return {
-                    form: { name: '', email: '', subject: '', message: '', gender: '' },
-                    errors: { name: null, email: null }
+        if (name === "" || email === "" || phone === "" || subject === "" || message === "" || (!genderMale && !genderFemale)) {
+            alert("Native JS Hatası: Lütfen tüm alanları doldurun ve cinsiyetinizi seçin!");
+            return false;
+        }
+        
+        if (!emailPattern.test(email)) {
+            alert("Native JS Hatası: Geçersiz e-posta formatı!");
+            return false;
+        }
+       
+        if (!phonePattern.test(phone)) {
+            alert("Native JS Hatası: Telefon numarası sadece rakamlardan oluşmalıdır!");
+            return false;
+        }
+        
+        if (!agree) {
+            alert("Native JS Hatası: Şartları onaylamadan formu gönderemezsiniz!");
+            return false;
+        }
+        
+        alert("JS Kontrolü Başarılı! Form PHP'ye gönderiliyor...");
+        document.getElementById('contactForm').submit();
+    }
+
+    
+    const { createApp } = Vue;
+    createApp({
+        data() {
+            return {
+                form: { name: '', email: '', phone: '', subject: '', message: '', gender: '', agree: false },
+                errors: { name: null, email: null, phone: null, subject: null, message: null, gender: null, agree: null }
+            }
+        },
+        methods: {
+            validateVue(e) {
+                
+                this.errors = { name: null, email: null, phone: null, subject: null, message: null, gender: null, agree: null };
+                let isValid = true;
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const phonePattern = /^[0-9]+$/;
+
+                if (!this.form.name.trim()) {
+                    this.errors.name = "İsim alanı boş bırakılamaz!";
+                    isValid = false;
+                }
+                if (!emailPattern.test(this.form.email)) {
+                    this.errors.email = "Geçerli bir e-posta adresi giriniz!";
+                    isValid = false;
+                }
+                if (!phonePattern.test(this.form.phone)) {
+                    this.errors.phone = "Telefon sadece rakamlardan oluşmalıdır!";
+                    isValid = false;
+                }
+                if (!this.form.subject) {
+                    this.errors.subject = "Lütfen bir konu seçiniz!";
+                    isValid = false;
+                }
+                if (!this.form.message.trim()) {
+                    this.errors.message = "Mesaj alanı boş bırakılamaz!";
+                    isValid = false;
+                }
+                if (!this.form.gender) {
+                    this.errors.gender = "Lütfen cinsiyet seçimi yapınız!";
+                    isValid = false;
+                }
+                if (!this.form.agree) {
+                    this.errors.agree = "Doğruluk beyanını onaylamalısınız!";
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault(); 
+                    alert("Vue.js Hatası: Lütfen formdaki kırmızı uyarıları düzeltiniz!");
+                } else {
+                    alert("Vue.js Kontrolü Başarılı! Form PHP'ye post ediliyor...");
                 }
             },
-            methods: {
-                validateVue(e) {
-                    this.errors = { name: null, email: null };
-                    let isValid = true;
-
-                    if (!this.form.name) {
-                        this.errors.name = "İsim alanı boş bırakılamaz!";
-                        isValid = false;
-                    }
-                    if (!this.form.email.includes('@')) {
-                        this.errors.email = "Geçerli bir e-posta giriniz!";
-                        isValid = false;
-                    }
-
-                    if (!isValid) {
-                        e.preventDefault(); 
-                    } else {
-                        alert("Vue.js Kontrolü Başarılı!");
-                    }
-                },
-                resetForm() {
-                    this.form = { name: '', email: '', subject: '', message: '', gender: '' };
-                    this.errors = { name: null, email: null };
-                }
+            resetForm() {
+                this.form = { name: '', email: '', phone: '', subject: '', message: '', gender: '', agree: false };
+                this.errors = { name: null, email: null, phone: null, subject: null, message: null, gender: null, agree: null };
             }
-        }).mount('#app');
-    </script>
+        }
+    }).mount('#app');
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

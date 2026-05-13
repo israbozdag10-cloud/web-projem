@@ -14,12 +14,10 @@
             font-family: 'Segoe UI', sans-serif; 
         }
 
-        
         .navbar {
             border-bottom: 1px solid #333;
         }
 
-        
         .carousel-item {
             height: 75vh; 
             background-color: #000;
@@ -38,7 +36,6 @@
             border: 1px solid #444;
         }
 
-        
         .baslik-beyaz {
             color: #ffffff !important;
             font-weight: bold;
@@ -61,7 +58,6 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -80,12 +76,20 @@
 
 <div class="container py-5">
     <div class="text-center mb-5">
-       
         <h1 class="display-3 baslik-beyaz">DOĞU'NUN YILDIZI: MALATYA</h1>
         <p class="text-lead">Gezilecek En Güzel Yerler ve Kültürel Miras</p>
     </div>
 
     <div id="malatyaSlider" class="carousel slide carousel-fade shadow-lg" data-bs-ride="carousel">
+        
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+
         <div class="carousel-inner rounded-3 border border-secondary">
             
             <div class="carousel-item active">
@@ -136,22 +140,22 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-
     <div class="info-card shadow-lg mb-5">
         <h2 class="baslik-beyaz border-bottom border-secondary pb-2 mb-4">Medeniyetin Şekillendiği Şehir: Malatya</h2>
         
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-3">
                 <h4 class="text-white opacity-75">Tarihsel Derinlik</h4>
                 <p>Malatya, insanlık tarihinin en eski yerleşim merkezlerinden biri olma özelliğini taşır.</p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-3">
                 <h4 class="text-white opacity-75">Ekonomik Güç ve Kayısı</h4>
                 <p>Dünya kuru kayısı üretiminin yaklaşık %80'ini tek başına karşılayan Malatya, "Kayısı Başkenti"dir.</p>
             </div>
-            <hr class="bg-secondary my-4">
-
+        </div>
         
+        <hr class="bg-secondary my-4">
+
         <div class="row text-center">
             <div class="col-md-4 mb-4">
                 <div class="p-3 border border-secondary rounded h-100">
@@ -175,11 +179,10 @@
 
         <div class="row mt-3">
             <div class="col-12 text-center">
-                <p class="text-muted italic" style="font-size: 0.9rem;">
+                <p class="text-muted fst-italic" style="font-size: 0.9rem;">
                     * Malatya, her yıl düzenlenen Kayısı Festivali ve Uluslararası Film Festivali ile kültürel canlılığını korumaktadır.
                 </p>
             </div>
-        </div>
         </div>
     </div>
 </div>
