@@ -3,156 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İlgi Alanlarım - Geniş Katalog</title>
+    <title>İlgi Alanlarım - Sinema & Dizi Arşivi</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
     <style>
+        
+        :root {
+            --bg-lacivert: #0a1128;       
+            --bg-kart: #111f42;          
+            --text-primary: #ffffff;      
+            --text-muted: #a0aec0;        
+            --accent-gold: #e2b659;       
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
         body { 
-            background-color: #0a0a0a; 
-            color: #fff; 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-lacivert); 
+            color: var(--text-primary); 
+            font-family: var(--font-sans);
+            letter-spacing: -0.02em;
+            overflow-x: hidden;
         }
-        .navbar { 
-            background-color: rgba(0,0,0,0.9) !important;
-            border-bottom: 3px solid #e50914; 
+
+        
+        .custom-navbar {
+            background-image: linear-gradient(to right, rgba(10, 17, 40, 0.85), rgba(17, 31, 66, 0.85)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(232, 182, 89, 0.2);
+            padding: 25px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        .netflix-card {
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: none;
-            background-color: #141414;
-            border-radius: 4px;
-            height: 100%;
-        }
-        .netflix-card:hover {
-            transform: scale(1.08);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.8);
-            z-index: 10;
-        }
-        .card-img-top {
-            height: 380px;
-            object-fit: cover;
-        }
-        .btn-netflix {
-            background-color: #e50914;
-            color: white;
+
+        .navbar-brand {
             font-weight: 600;
-            border-radius: 2px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--text-primary) !important;
         }
-        .btn-netflix:hover {
-            background-color: #b20710;
-            color: white;
+
+        .navbar-brand span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
         }
+
+        .navbar-nav .nav-link {
+            color: var(--text-muted) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+        }
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--text-primary) !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-nav .nav-link.active {
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+       
+        .btn-login {
+            border: 1px solid var(--accent-gold) !important;
+            color: var(--accent-gold) !important;
+            padding: 5px 18px !important;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-lacivert) !important;
+        }
+
+       
+        .page-title {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .page-title span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
+        }
+
+       
+        .premium-media-card {
+            background-color: var(--bg-kart);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            height: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .premium-media-card:hover {
+            transform: scale(1.04);
+            border-color: rgba(232, 182, 89, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        .card-img-top {
+            height: 340px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+       
+        .btn-premium-action {
+            background-color: transparent;
+            color: var(--accent-gold);
+            border: 1px solid rgba(232, 182, 89, 0.4);
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium-action:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-lacivert);
+            box-shadow: 0 4px 12px rgba(232, 182, 89, 0.2);
+        }
+
+        
         .lang-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0,0,0,0.7);
-            padding: 2px 8px;
+            top: 12px;
+            left: 12px;
+            background: rgba(10, 17, 40, 0.85);
+            color: var(--accent-gold);
+            padding: 4px 10px;
             font-size: 0.7rem;
-            border: 1px solid #444;
+            font-weight: 600;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(232, 182, 89, 0.25);
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .genre-text {
+            color: var(--accent-gold) !important;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand text-danger fw-bold fs-3" href="index.html">NETFLIX-API</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-uppercase small fw-bold">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html" style="color: #e50914 !important;">Hakkında</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cv.html" style="color: #e50914 !important;">CV</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sehrim.html" style="color: #e50914 !important;">Şehrim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="mirasimiz.html" style="color: #e50914 !important;">Mirasımız</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ilgi.html" style="color: #e50914 !important;">İlgi Alanlarım</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="iletisim.html" style="color: #e50914 !important;">İletişim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html" style="color: #e50914 !important;">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container py-5">
-        <h2 class="text-white mb-4 fw-bold">Dizi & Film Arşivim</h2>
-        
-        <div id="loader" class="text-center py-5">
-            <div class="spinner-border text-danger" role="status"></div>
-            <p class="mt-2 text-secondary">Global sunuculardan veriler çekiliyor...</p>
-        </div>
-
-        <div id="media-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-         
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
+    <div class="container">
+        <a class="navbar-brand text-uppercase tracking-wider" href="index.html">İsra <span>Bozdağ</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-2">
+                <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
+                <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+                <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+                <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
+                <li class="nav-item"><a class="nav-link active" href="ilgi.html">İlgi Alanlarım</a></li>
+                <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                <li class="nav-item"><a class="nav-link btn-login" href="login.html">Login</a></li>
+            </ul>
         </div>
     </div>
+</nav>
 
-    <script>
-       
-        const genişListe = [
-            "All of Us Are Dead", "Sherlock", "The Witcher", "Jujutsu Kaisen", 
-            "Dark", "Bird Box", "Purple Hearts", "Squid Game", 
-            "Money Heist", "Wednesday", "The Sandman", "You", 
-            "Arcane", "Peaky Blinders", "Mindhunter", "Beef"
-        ];
+<div class="container py-5" style="margin-top: 140px;">
+    <h2 class="text-white mb-5 fw-bold page-title">Dizi & Film <span>Arşivim</span></h2>
+    
+    <div id="loader" class="text-center py-5">
+        <div class="spinner-border" style="color: var(--accent-gold);" role="status"></div>
+        <p class="mt-3 text-muted fw-light" style="font-size: 0.95rem;">Global sunuculardan veriler güvenle çekiliyor...</p>
+    </div>
 
-        async function loadArchive() {
-            const grid = document.getElementById('media-grid');
-            const loader = document.getElementById('loader');
+    <div id="media-grid" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        </div>
+</div>
 
-            try {
-                for (const title of genişListe) {
-                    const response = await fetch(`https://api.tvmaze.com/singlesearch/shows?q=${title}`);
+<script>
+    
+    const genişListe = [
+        "All of Us Are Dead", "Sherlock", "The Witcher", "Jujutsu Kaisen", 
+        "Dark", "Bird Box", "Purple Hearts", "Squid Game", 
+        "Money Heist", "Wednesday", "The Sandman", "You", 
+        "Arcane", "Peaky Blinders", "Mindhunter", "Beef"
+    ];
+
+    async function loadArchive() {
+        const grid = document.getElementById('media-grid');
+        const loader = document.getElementById('loader');
+
+        try {
+            for (const title of genişListe) {
+                const response = await fetch(`https://api.tvmaze.com/singlesearch/shows?q=${title}`);
+                
+                if (response.ok) {
+                    const data = await response.json();
                     
-                    if (response.ok) {
-                        const data = await response.json();
-                        
-                        const itemHtml = `
-                            <div class="col">
-                                <div class="card netflix-card position-relative">
-                                    <span class="lang-badge text-uppercase">${data.language}</span>
-                                    <img src="${data.image ? data.image.original : 'https://via.placeholder.com/400x570'}" class="card-img-top" alt="${data.name}">
-                                    <div class="card-body d-flex flex-column">
-                                        <h6 class="card-title fw-bold mb-1">${data.name}</h6>
-                                        <div class="text-danger small mb-2" style="font-size: 0.75rem;">
-                                            ${data.genres.join(' • ')}
-                                        </div>
-                                        <p class="card-text text-secondary" style="font-size: 0.8rem;">
-                                            ${data.summary ? data.summary.replace(/<[^>]*>/g, '').substring(0, 85) : 'Özet bulunamadı.'}...
-                                        </p>
-                                        <a href="${data.url}" target="_blank" class="btn btn-netflix btn-sm mt-auto">Detaylar</a>
+                    
+                    const itemHtml = `
+                        <div class="col">
+                            <div class="card premium-media-card position-relative border-0">
+                                <span class="lang-badge text-uppercase">${data.language}</span>
+                                <img src="${data.image ? data.image.original : 'https://via.placeholder.com/400x570'}" class="card-img-top" alt="${data.name}">
+                                <div class="card-body d-flex flex-column p-3">
+                                    <h6 class="card-title text-white fw-semibold mb-1" style="font-size: 1rem;">${data.name}</h6>
+                                    <div class="genre-text small mb-2">
+                                        ${data.genres.join(' • ')}
                                     </div>
+                                    <p class="card-text text-muted" style="font-size: 0.8rem; line-height: 1.5;">
+                                        ${data.summary ? data.summary.replace(/<[^>]*>/g, '').substring(0, 85) : 'Özet bulunamadı.'}...
+                                    </p>
+                                    <a href="${data.url}" target="_blank" class="btn btn-premium-action btn-sm mt-auto py-2">Detayları Gör</a>
                                 </div>
                             </div>
-                        `;
-                        grid.innerHTML += itemHtml;
-                    }
+                        </div>
+                    `;
+                    grid.innerHTML += itemHtml;
                 }
-                loader.style.display = 'none';
-            } catch (err) {
-                loader.innerHTML = "<p class='text-danger'>Bağlantı hatası oluştu.</p>";
             }
+            loader.style.display = 'none';
+        } catch (err) {
+            loader.innerHTML = "<p class='text-danger'>Veriler çekilirken bir bağlantı hatası oluştu.</p>";
         }
+    }
 
-        window.onload = loadArchive;
-    </script>
+    window.onload = loadArchive;
+</script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

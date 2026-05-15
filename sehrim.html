@@ -7,20 +7,111 @@
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
     <style>
+       
+        :root {
+            --bg-lacivert: #0a1128;       
+            --bg-kart: #111f42;           
+            --text-primary: #ffffff;     
+            --text-muted: #a0aec0;        
+            --accent-gold: #e2b659;       
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
         body { 
-            background-color: #121212; 
-            color: #ffffff;
-            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--bg-lacivert); 
+            color: var(--text-primary);
+            font-family: var(--font-sans); 
+            letter-spacing: -0.02em;
+            overflow-x: hidden;
         }
 
-        .navbar {
-            border-bottom: 1px solid #333;
+        
+        .custom-navbar {
+            background-image: linear-gradient(to right, rgba(10, 17, 40, 0.85), rgba(17, 31, 66, 0.85)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(232, 182, 89, 0.2);
+            padding: 25px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--text-primary) !important;
+        }
+
+        .navbar-brand span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-muted) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+        }
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--text-primary) !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-nav .nav-link.active {
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+       
+        .btn-login {
+            border: 1px solid var(--accent-gold) !important;
+            color: var(--accent-gold) !important;
+            padding: 5px 18px !important;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-lacivert) !important;
+        }
+
+       
+        .baslik-beyaz {
+            color: var(--text-primary) !important;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-family: var(--font-sans);
+            letter-spacing: 1px;
+        }
+
+        .baslik-beyaz span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
+            text-transform: none;
+        }
+
+        .text-lead {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        
         .carousel-item {
-            height: 75vh; 
-            background-color: #000;
+            height: 70vh; 
+            background-color: #050b1a;
         }
 
         .carousel-item img { 
@@ -30,58 +121,91 @@
         }
 
         .carousel-caption {
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
+            background: rgba(17, 31, 66, 0.85); 
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
             padding: 20px;
-            border: 1px solid #444;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            bottom: 30px;
         }
 
-        .baslik-beyaz {
-            color: #ffffff !important;
-            font-weight: bold;
-            text-transform: uppercase;
+        .carousel-caption h4 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 5px;
         }
+
+        .carousel-caption p {
+            color: var(--text-muted);
+            margin-bottom: 0;
+            font-weight: 300;
+        }
+
         
         .info-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 35px;
-            border-radius: 15px;
-            margin-top: 40px;
-            border: 1px solid #333;
+            background-color: var(--bg-kart);
+            padding: 40px;
+            border-radius: 16px;
+            margin-top: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .text-lead {
-            color: #ccc;
-            font-size: 1.2rem;
+        .info-card h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .section-sub-title {
+            color: var(--accent-gold) !important;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        
+        .sub-box {
+            background: rgba(10, 17, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .sub-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(232, 182, 89, 0.2);
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
     <div class="container">
+        <a class="navbar-brand text-uppercase tracking-wider" href="index.html">İsra <span>Bozdağ</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav gap-2">
                 <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
                 <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
                 <li class="nav-item"><a class="nav-link active" href="sehrim.html">Şehrim</a></li>
                 <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
                 <li class="nav-item"><a class="nav-link" href="ilgi.html">İlgi Alanlarım</a></li>
                 <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link btn-login" href="login.html">Login</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container py-5">
+<div class="container py-5" style="margin-top: 140px;">
+    
     <div class="text-center mb-5">
-        <h1 class="display-3 baslik-beyaz">DOĞU'NUN YILDIZI: MALATYA</h1>
-        <p class="text-lead">Gezilecek En Güzel Yerler ve Kültürel Miras</p>
+        <h1 class="display-4 baslik-beyaz">DOĞU'NUN YILDIZI: <span>Malatya</span></h1>
+        <p class="text-lead mt-2">Gezilecek En Güzel Yerler ve Kültürel Miras</p>
     </div>
 
     <div id="malatyaSlider" class="carousel slide carousel-fade shadow-lg" data-bs-ride="carousel">
-        
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -90,12 +214,11 @@
             <button type="button" data-bs-target="#malatyaSlider" data-bs-slide-to="4" aria-label="Slide 5"></button>
         </div>
 
-        <div class="carousel-inner rounded-3 border border-secondary">
-            
+        <div class="carousel-inner rounded-3 border-0">
             <div class="carousel-item active">
                 <img src="img/arslantepe.jpg" class="d-block w-100" alt="Arslantepe">
                 <div class="carousel-caption">
-                    <h4 class="baslik-beyaz">Arslantepe Höyüğü</h4>
+                    <h4 class="text-white">Arslantepe Höyüğü</h4>
                     <p>Dünya Mirası Listesi'nin Göz Bebeği</p>
                 </div>
             </div>
@@ -103,7 +226,7 @@
             <div class="carousel-item">
                 <img src="img/günpınar.jpg" class="d-block w-100" alt="Günpınar">
                 <div class="carousel-caption">
-                    <h4 class="baslik-beyaz">Günpınar Şelalesi</h4>
+                    <h4 class="text-white">Günpınar Şelalesi</h4>
                     <p>Doğanın Kalbinde Bir Huzur Köşesi</p>
                 </div>
             </div>
@@ -111,7 +234,7 @@
             <div class="carousel-item">
                 <img src="img/kanalboyu.jpg" class="d-block w-100" alt="Kanalboyu">
                 <div class="carousel-caption">
-                    <h4 class="baslik-beyaz">Kanalboyu</h4>
+                    <h4 class="text-white">Kanalboyu</h4>
                     <p>Malatya'nın En Sosyal ve Meşhur Caddesi</p>
                 </div>
             </div>
@@ -119,7 +242,7 @@
             <div class="carousel-item">
                 <img src="img/leventvadisi.jpg" class="d-block w-100" alt="Levent Vadisi">
                 <div class="carousel-caption">
-                    <h4 class="baslik-beyaz">Levent Vadisi</h4>
+                    <h4 class="text-white">Levent Vadisi</h4>
                     <p>65 Milyon Yıllık Devasa Kanyon</p>
                 </div>
             </div>
@@ -127,7 +250,7 @@
             <div class="carousel-item">
                 <img src="img/kayısı.webp" class="d-block w-100" alt="Kayısı">
                 <div class="carousel-caption">
-                    <h4 class="baslik-beyaz">Malatya Kayısısı</h4>
+                    <h4 class="text-white">Malatya Kayısısı</h4>
                     <p>Avrupa Birliği Tescilli Tek Türk Kayısısı</p>
                 </div>
             </div>
@@ -140,47 +263,48 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
+
     <div class="info-card shadow-lg mb-5">
-        <h2 class="baslik-beyaz border-bottom border-secondary pb-2 mb-4">Medeniyetin Şekillendiği Şehir: Malatya</h2>
+        <h2 class="baslik-beyaz pb-2 mb-4" style="border-bottom: 1px solid rgba(255,255,255,0.05);">Medeniyetin Şekillendiği Şehir: <span>Malatya</span></h2>
         
         <div class="row">
             <div class="col-lg-6 mb-3">
-                <h4 class="text-white opacity-75">Tarihsel Derinlik</h4>
-                <p>Malatya, insanlık tarihinin en eski yerleşim merkezlerinden biri olma özelliğini taşır.</p>
+                <h4 class="section-sub-title">Tarihsel Derinlik</h4>
+                <p class="text-muted font-weight-light">Malatya, insanlık tarihinin en eski yerleşim merkezlerinden biri olma özelliğini taşır.</p>
             </div>
             <div class="col-lg-6 mb-3">
-                <h4 class="text-white opacity-75">Ekonomik Güç ve Kayısı</h4>
-                <p>Dünya kuru kayısı üretiminin yaklaşık %80'ini tek başına karşılayan Malatya, "Kayısı Başkenti"dir.</p>
+                <h4 class="section-sub-title">Ekonomik Güç ve Kayısı</h4>
+                <p class="text-muted font-weight-light">Dünya kuru kayısı üretiminin yaklaşık %80'ini tek başına karşılayan Malatya, "Kayısı Başkenti"dir.</p>
             </div>
         </div>
         
-        <hr class="bg-secondary my-4">
+        <hr class="my-4" style="background-color: rgba(255,255,255,0.05); border: 0; height: 1px;">
 
         <div class="row text-center">
             <div class="col-md-4 mb-4">
-                <div class="p-3 border border-secondary rounded h-100">
-                    <h4 class="baslik-beyaz" style="font-size: 1.1rem;">Gastronomi</h4>
-                    <p class="small">Analı-kızlı, içli köfte ve kâğıt kebabı ile Türkiye'nin en zengin mutfaklarından birine sahiptir. 70'den fazla çeşit bulgur köftesiyle meşhurdur.</p>
+                <div class="p-4 sub-box rounded-3 h-100">
+                    <h4 class="text-white mb-2" style="font-size: 1.1rem; font-weight: 500;">Gastronomi</h4>
+                    <p class="text-muted small mb-0">Analı-kızlı, içli köfte ve kâğıt kebabı ile Türkiye'nin en zengin mutfaklarından birine sahiptir. 70'den fazla çeşit bulgur köftesiyle meşhurdur.</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="p-3 border border-secondary rounded h-100">
-                    <h4 class="baslik-beyaz" style="font-size: 1.1rem;">Eğitim ve Sağlık</h4>
-                    <p class="small">İnönü Üniversitesi ve Turgut Özal Tıp Merkezi sayesinde bölgenin hem sağlık hem de bilim merkezidir. Karaciğer naklinde dünya markasıdır.</p>
+                <div class="p-4 sub-box rounded-3 h-100">
+                    <h4 class="text-white mb-2" style="font-size: 1.1rem; font-weight: 500;">Eğitim ve Sağlık</h4>
+                    <p class="text-muted small mb-0">İnönü Üniversitesi ve Turgut Özal Tıp Merkezi sayesinde bölgenin hem sağlık hem de bilim merkezidir. Karaciğer naklinde dünya markasıdır.</p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
-                <div class="p-3 border border-secondary rounded h-100">
-                    <h4 class="baslik-beyaz" style="font-size: 1.1rem;">Coğrafya</h4>
-                    <p class="small">Batıda Sivas ve Maraş, doğuda Elazığ ile komşudur. Fırat Nehri'nin bereketli toprakları üzerine kurulmuş, Doğu Anadolu'nun en gelişmiş illerindendir.</p>
+                <div class="p-4 sub-box rounded-3 h-100">
+                    <h4 class="text-white mb-2" style="font-size: 1.1rem; font-weight: 500;">Coğrafya</h4>
+                    <p class="text-muted small mb-0">Batıda Sivas ve Maraş, doğuda Elazığ ile komşudur. Fırat Nehri'nin bereketli toprakları üzerine kurulmuş, Doğu Anadolu'nun en gelişmiş illerindendir.</p>
                 </div>
             </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-12 text-center">
-                <p class="text-muted fst-italic" style="font-size: 0.9rem;">
-                    * Malatya, her yıl düzenlenen Kayısı Festivali ve Uluslararası Film Festivali ile kültürel canlılığını korumaktadır.
+                <p class="text-muted fst-italic mb-0" style="font-size: 0.85rem;">
+                    * Malatya, her yıl düzenlenen Kayısı Festivali ile kültürel canlılığını korumaktadır.
                 </p>
             </div>
         </div>

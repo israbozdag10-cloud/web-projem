@@ -2,53 +2,240 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Benim Sitem</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İsra Bozdağ | Portfolio</title>
     
-    <link rel="stylesheet" href="css/style.css">
-
-   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
+    <style>
+       
+        :root {
+            --bg-lacivert: #0a1128;      
+            --bg-kart: #111f42;           
+            --text-primary: #ffffff;     
+            --text-muted: #a0aec0;        
+            --accent-gold: #e2b659;       
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        body {
+            background-color: var(--bg-lacivert);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            letter-spacing: -0.02em;
+            overflow-x: hidden;
+        }
+
+       
+        .custom-navbar {
+            background-image: linear-gradient(to right, rgba(10, 17, 40, 0.85), rgba(17, 31, 66, 0.85)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(232, 182, 89, 0.2); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--text-primary) !important;
+            font-family: var(--font-sans);
+        }
+
+        .navbar-brand span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-muted) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+        }
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--text-primary) !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        
+        .navbar-nav .nav-link.active {
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+       
+        .btn-login {
+            border: 1px solid var(--accent-gold) !important;
+            color: var(--accent-gold) !important;
+            padding: 5px 18px !important;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-lacivert) !important;
+        }
+
+        
+        .hero-section {
+            min-height: 100vh;
+        }
+
+        .subtitle {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            display: inline-block;
+        }
+
+        .main-title {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            color: var(--text-primary);
+        }
+
+        .main-title span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .lead-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+       
+        .hobbies-box {
+            background-color: var(--bg-kart);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .custom-list li {
+            padding: 8px 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .custom-list li span {
+            color: var(--accent-gold);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        
+        .profile-image-wrapper {
+            position: relative;
+            display: inline-block;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            max-width: 380px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(20%) contrast(110%);
+        }
+
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, var(--bg-lacivert) 100%);
+            pointer-events: none;
+        }
+    </style>
+</head>
 <body>
 
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Web Projem</a>
-
-        <div>
-            <a class="nav-link text-white" href="index.html">Hakkında</a>
-            <a class="nav-link text-white" href="cv.html">CV</a>
-            <a class="nav-link text-white" href="sehrim.html">Şehrim</a>
-            <a class="nav-link text-white" href="mirasimiz.html">Mirasımız</a>
-            <a class="nav-link text-white" href="ilgi.html">İlgi Alanlarım</a>
-            <a class="nav-link text-white" href="iletisim.html">İletişim</a>
-            <a class="nav-link text-white" href="login.html">Login</a>
+        <a class="navbar-brand text-uppercase tracking-wider" href="index.html">İsra <span>Bozdağ</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-2">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Hakkında</a></li>
+                <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+                <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
+                <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
+                <li class="nav-item"><a class="nav-link" href="ilgi.html">İlgi Alanlarım</a></li>
+                <li class="nav-item"><a class="nav-link" href="iletisim.html">İletişim</a></li>
+                <li class="nav-item"><a class="nav-link btn-login" href="login.html">Login</a></li>
+            </ul>
         </div>
     </div>
 </nav>
 
+<div class="container hero-section" style="margin-top: 140px;">
+    <div class="row align-items-center py-5">
+        
+        <div class="col-lg-7 text-content pe-lg-5">
+            <span class="subtitle text-uppercase">Bilgisayar Mühendisliği Öğrencisi</span>
+            <h1 class="display-3 main-title mt-2">İsra <span>Bozdağ</span></h1>
+            
+            <p class="lead-text mt-4">
+                Merhaba, ben İsra. 2007 doğumluyum, Malatya'lıyım. Aktif olarak Sakarya Üniversitesi Bilgisayar Mühendisliği birinci sınıf öğrencisiyim. Geliştirme süreçlerinde aktif olarak C#, C++ ve HTML/CSS dillerini kullanarak projeler üretiyorum.
+            </p>
+            
+            <div class="hobbies-box mt-5">
+                <h3 class="section-subtitle">Gelişim ve İlgi Alanlarım</h3>
+                <ul class="custom-list mt-3">
+                    <li><span>•</span> Dil öğrenmek ve çeviri yapmak</li>
+                    <li><span>•</span> Müzik dinlemek ve dijital müzik üretimi</li>
+                    <li><span>•</span> Algoritma tasarlamak ve kod yazmak</li>
+                    <li><span>•</span> Dijital ve karakalem resim çizmek</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-lg-5 text-center mt-5 mt-lg-0">
+            <div class="profile-image-wrapper">
+                <img src="img/profil.png" alt="İsra Bozdağ" class="img-fluid profile-img" onerror="this.src='https://via.placeholder.com/450x600/0a1128/ffffff?text=%C4%B0sra+Bozda%C4%9F'">
+                <div class="image-overlay"></div>
+            </div>
+        </div>
 
-<div class="container mt-5">
-    <h1>Hakkımda</h1>
-    <p>Merhaba, ben İsra. 2007 doğumluyum. Malatya`lıyım. Aktif olarak bilgisayar mühendisliği birinci sınıf öğrencisiyim. C#, C++ ve HTML dillerini biliyorum. </p>
-
-    <h3>Hobilerim</h3>
-    <ul>
-        <li>Dil öğrenmek ve çeviri yapmak</li>
-        <li>Müzik dinlemek ve üretmek</li>
-        <li>Kod yazmak</li>
-        <li>Resim çizmek</li>
-    </ul>
-
-    
-
-    <br><br>
-
-
+    </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -3,208 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İletişim - Web Projem</title>
+    <title>İletişim - Bana Ulaşın</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
     <style>
-        body { background-color: #f4f7f6; }
-        .contact-container { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .error-msg { color: #e50914; font-size: 0.85rem; margin-top: 5px; }
-        .is-invalid { border-color: #e50914 !important; }
+       
+        :root {
+            --bg-lacivert: #0a1128;       
+            --bg-kart: #111f42;           
+            --text-primary: #ffffff;     
+            --text-muted: #a0aec0;        
+            --accent-gold: #e2b659;       
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        body { 
+            background-color: var(--bg-lacivert); 
+            color: var(--text-primary);
+            font-family: var(--font-sans); 
+            letter-spacing: -0.02em;
+            overflow-x: hidden;
+        }
+
+        
+        .custom-navbar {
+            background-image: linear-gradient(to right, rgba(10, 17, 40, 0.85), rgba(17, 31, 66, 0.85)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid rgba(232, 182, 89, 0.2);
+            padding: 25px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--text-primary) !important;
+        }
+
+        .navbar-brand span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-muted) !important;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+        }
+
+        .navbar-nav .nav-link:hover, 
+        .navbar-nav .nav-link.active {
+            color: var(--text-primary) !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .navbar-nav .nav-link.active {
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+       
+        .btn-login {
+            border: 1px solid var(--accent-gold) !important;
+            color: var(--accent-gold) !important;
+            padding: 5px 18px !important;
+            border-radius: 20px;
+            margin-left: 10px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-lacivert) !important;
+        }
+
+        
+        .page-title {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .page-title span {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--accent-gold);
+        }
+
+        
+        .contact-card {
+            background-color: var(--bg-kart);
+            padding: 45px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        
+        .info-box {
+            background: rgba(10, 17, 40, 0.4);
+            border: 1px solid rgba(232, 182, 89, 0.15);
+            border-radius: 12px;
+            padding: 22px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .info-box:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-title {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            word-break: break-all;
+            transition: color 0.2s;
+        }
+
+        .info-value:hover {
+            color: var(--accent-gold);
+        }
+
+       
+        .form-control, .form-select {
+            background-color: rgba(10, 17, 40, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-primary) !important;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent-gold) !important;
+            box-shadow: 0 0 10px rgba(232, 182, 89, 0.2) !important;
+        }
+
+        .form-select option {
+            background-color: var(--bg-lacivert);
+            color: var(--text-primary);
+        }
+
+        .form-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+       
+        .form-check-input {
+            background-color: rgba(10, 17, 40, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-check-input:checked {
+            background-color: var(--accent-gold) !important;
+            border-color: var(--accent-gold) !important;
+        }
+
+        .form-check-input:focus {
+            box-shadow: 0 0 8px rgba(232, 182, 89, 0.4) !important;
+        }
+
+        
+        .btn-js-submit {
+            background-color: var(--accent-gold);
+            color: var(--bg-lacivert);
+            font-weight: 600;
+            border: 1px solid var(--accent-gold);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-js-submit:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(232, 182, 89, 0.2);
+        }
+
+        .btn-vue-submit {
+            background-color: transparent;
+            color: var(--accent-gold);
+            font-weight: 500;
+            border: 1px solid rgba(232, 182, 89, 0.5);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-vue-submit:hover {
+            background-color: rgba(232, 182, 89, 0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .btn-form-clear {
+            background-color: transparent;
+            color: var(--text-muted);
+            font-weight: 400;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-form-clear:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .section-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin: 45px 0;
+        }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar fixed-top">
     <div class="container">
+        <a class="navbar-brand text-uppercase tracking-wider" href="index.html">İsra <span>Bozdağ</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav gap-2">
                 <li class="nav-item"><a class="nav-link" href="index.html">Hakkında</a></li>
                 <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
                 <li class="nav-item"><a class="nav-link" href="sehrim.html">Şehrim</a></li>
                 <li class="nav-item"><a class="nav-link" href="mirasimiz.html">Mirasımız</a></li>
                 <li class="nav-item"><a class="nav-link" href="ilgi.html">İlgi Alanlarım</a></li>
                 <li class="nav-item"><a class="nav-link active" href="iletisim.html">İletişim</a></li>
-                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                <li class="nav-item"><a class="nav-link btn-login" href="login.html">Login</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div id="app" class="container my-5">
+<div class="container py-5" style="margin-top: 140px;">
     <div class="row justify-content-center">
-        <div class="col-md-8 contact-container p-5">
-            <h2 class="text-center mb-4">İletişim Formu</h2>
-            
-            <form id="contactForm" action="gonder.php" method="POST" @submit="validateVue">
+        <div class="col-lg-10">
+            <div class="contact-card">
                 
-                <div class="mb-3">
-                    <label class="form-label">Adınız Soyadınız</label>
-                    <input type="text" name="adSoyad" id="adSoyad" v-model="form.name" class="form-control" :class="{'is-invalid': errors.name}">
-                    <div class="error-msg" v-if="errors.name">{{ errors.name }}</div>
+                <div class="text-center mb-5">
+                    <h2 class="text-white fw-bold page-title">Bana <span>Ulaşın</span></h2>
+                    <p class="text-muted fw-light mt-2">Sorularınız, projeleriniz veya sadece merhaba demek için iletişim kanallarımı kullanabilirsiniz.</p>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">E-posta Adresiniz</label>
-                    <input type="text" name="email" id="email" v-model="form.email" class="form-control" :class="{'is-invalid': errors.email}">
-                    <div class="error-msg" v-if="errors.email">{{ errors.email }}</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Telefon Numaranız</label>
-                    <input type="text" name="telefon" id="telefon" v-model="form.phone" class="form-control" :class="{'is-invalid': errors.phone}" placeholder="Örn: 05551112233">
-                    <div class="error-msg" v-if="errors.phone">{{ errors.phone }}</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Konu</label>
-                    <select name="konu" id="konu" class="form-select" v-model="form.subject" :class="{'is-invalid': errors.subject}">
-                        <option value="">Seçiniz...</option>
-                        <option value="Destek">Destek</option>
-                        <option value="Öneri">Öneri</option>
-                        <option value="İş Birliği">İş Birliği</option>
-                        <option value="Diğer">Diğer</option> 
-                    </select>
-                    <div class="error-msg" v-if="errors.subject">{{ errors.subject }}</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Mesajınız</label>
-                    <textarea name="mesaj" id="mesaj" v-model="form.message" class="form-control" rows="4" :class="{'is-invalid': errors.message}"></textarea>
-                    <div class="error-msg" v-if="errors.message">{{ errors.message }}</div>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label d-block">Cinsiyet</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cinsiyet" id="genderM" value="Erkek" v-model="form.gender">
-                        <label class="form-check-label" for="genderM">Erkek</label>
+                <div class="row g-3 mb-2">
+                    <div class="col-md-6 col-xl-3">
+                        <div class="info-box">
+                            <div class="info-title">E-Posta</div>
+                            <a href="mailto:israbozdag10@gmail.com" class="info-value">israbozdag10@gmail.com</a>
+                        </div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="cinsiyet" id="genderF" value="Kadın" v-model="form.gender">
-                        <label class="form-check-label" for="genderF">Kadın</label>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="info-box">
+                            <div class="info-title">Instagram</div>
+                            <a href="https://instagram.com/iss3lwy" target="_blank" class="info-value">@iss3lwy</a>
+                        </div>
                     </div>
-                    <div class="error-msg" v-if="errors.gender">{{ errors.gender }}</div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="info-box">
+                            <div class="info-title">LinkedIn</div>
+                            <a href="https://linkedin.com/in/israbozdag" target="_blank" class="info-value">linkedin/in/israbozdag</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-3">
+                        <div class="info-box">
+                            <div class="info-title">Telefon</div>
+                            <a href="tel:+905551234567" class="info-value">+90 (553) 089 62 77</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mb-3 form-check">
-                    <input type="checkbox" name="onay" id="onay" class="form-check-input" v-model="form.agree">
-                    <label class="form-check-label" for="onay">Bilgilerimin doğruluğunu kabul ediyorum.</label>
-                    <div class="error-msg" v-if="errors.agree">{{ errors.agree }}</div>
-                </div>
+                <div class="section-divider"></div>
 
-                <div class="d-grid gap-2 mt-4">
-                    <button type="button" class="btn btn-primary" onclick="validateJS()">JS ile Gönder</button>
-                    <button type="submit" class="btn btn-success">Vue.js ile Gönder</button>
-                    <button type="reset" class="btn btn-outline-secondary" @click="resetForm">Temizle</button>
-                </div>
-            </form>
+                <h4 class="text-white mb-4 fw-light page-title" style="font-size: 1.25rem;">Mesaj <span>Gönderin</span></h4>
+                
+                <form action="gonder.php" method="POST">
+                    <div class="row g-4">
+                        
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Adınız Soyadınız</label>
+                            <input type="text" class="form-control" id="name" name="name" required placeholder="Örn: Ahmet Yılmaz"
+                                   oninput="this.value = this.value.replace(/[^a-zA-ZçÇğĞıİöÖşŞüÜ\s]/g, '')">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">E-posta Adresiniz</label>
+                            <input type="email" class="form-control" id="email" name="email" required placeholder="Örn: ahmet@example.com">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="phone" class="form-label">Telefon Numaranız</label>
+                            <input type="text" class="form-control" id="phone" name="phone" required placeholder="Örn: 05551112233"
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="subject" class="form-label">Konu</label>
+                            <select class="form-select" id="subject" name="subject" required>
+                                <option value="" selected disabled>Seçiniz...</option>
+                                <option value="Genel">Genel Soru / Öneri</option>
+                                <option value="Proje">Proje Geliştirme</option>
+                                <option value="Is">İş / Staj Teklifi</option>
+                                <option value="Diger">Diğer</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="message" class="form-label">Mesajınız</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Buraya yazabilirsiniz..."></textarea>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label d-block">Cinsiyet</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Erkek" required>
+                                <label class="form-check-label text-white" for="genderMale">Erkek</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Kadın">
+                                <label class="form-check-label text-white" for="genderFemale">Kadın</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Kabul Edildi" id="agreeCheck" name="agreeCheck" required>
+                                <label class="form-check-label text-muted small" for="agreeCheck">
+                                    Bilgilerimin doğruluğunu kabul ediyorum.
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-js-submit w-100 shadow-sm">JS ile Gönder</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-vue-submit w-100">Vue.js ile Gönder</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="reset" class="btn btn-form-clear w-100">Temizle</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    
-    function validateJS() {
-        const name = document.getElementById('adSoyad').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('telefon').value.trim();
-        const subject = document.getElementById('konu').value;
-        const message = document.getElementById('mesaj').value.trim();
-        const genderMale = document.getElementById('genderM').checked;
-        const genderFemale = document.getElementById('genderF').checked;
-        const agree = document.getElementById('onay').checked;
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phonePattern = /^[0-9]+$/; 
-
-        
-        if (name === "" || email === "" || phone === "" || subject === "" || message === "" || (!genderMale && !genderFemale)) {
-            alert("Native JS Hatası: Lütfen tüm alanları doldurun ve cinsiyetinizi seçin!");
-            return false;
-        }
-        
-        if (!emailPattern.test(email)) {
-            alert("Native JS Hatası: Geçersiz e-posta formatı!");
-            return false;
-        }
-       
-        if (!phonePattern.test(phone)) {
-            alert("Native JS Hatası: Telefon numarası sadece rakamlardan oluşmalıdır!");
-            return false;
-        }
-        
-        if (!agree) {
-            alert("Native JS Hatası: Şartları onaylamadan formu gönderemezsiniz!");
-            return false;
-        }
-        
-        alert("JS Kontrolü Başarılı! Form PHP'ye gönderiliyor...");
-        document.getElementById('contactForm').submit();
-    }
-
-    
-    const { createApp } = Vue;
-    createApp({
-        data() {
-            return {
-                form: { name: '', email: '', phone: '', subject: '', message: '', gender: '', agree: false },
-                errors: { name: null, email: null, phone: null, subject: null, message: null, gender: null, agree: null }
-            }
-        },
-        methods: {
-            validateVue(e) {
-                
-                this.errors = { name: null, email: null, phone: null, subject: null, message: null, gender: null, agree: null };
-                let isValid = true;
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const phonePattern = /^[0-9]+$/;
-
-                if (!this.form.name.trim()) {
-                    this.errors.name = "İsim alanı boş bırakılamaz!";
-                    isValid = false;
-                }
-                if (!emailPattern.test(this.form.email)) {
-                    this.errors.email = "Geçerli bir e-posta adresi giriniz!";
-                    isValid = false;
-                }
-                if (!phonePattern.test(this.form.phone)) {
-                    this.errors.phone = "Telefon sadece rakamlardan oluşmalıdır!";
-                    isValid = false;
-                }
-                if (!this.form.subject) {
-                    this.errors.subject = "Lütfen bir konu seçiniz!";
-                    isValid = false;
-                }
-                if (!this.form.message.trim()) {
-                    this.errors.message = "Mesaj alanı boş bırakılamaz!";
-                    isValid = false;
-                }
-                if (!this.form.gender) {
-                    this.errors.gender = "Lütfen cinsiyet seçimi yapınız!";
-                    isValid = false;
-                }
-                if (!this.form.agree) {
-                    this.errors.agree = "Doğruluk beyanını onaylamalısınız!";
-                    isValid = false;
-                }
-
-                if (!isValid) {
-                    e.preventDefault(); 
-                    alert("Vue.js Hatası: Lütfen formdaki kırmızı uyarıları düzeltiniz!");
-                } else {
-                    alert("Vue.js Kontrolü Başarılı! Form PHP'ye post ediliyor...");
-                }
-            },
-            resetForm() {
-                this.form = { name: '', email: '', phone: '', subject: '', message: '', gender: '', agree: false };
-                this.errors = { name: null, email: null, phone: null, subject: null, message: null, gender: null, agree: null };
-            }
-        }
-    }).mount('#app');
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
